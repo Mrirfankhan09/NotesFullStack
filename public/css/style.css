@@ -1,0 +1,14 @@
+.mr-10{
+    margin-right: 10px;
+}
+.mb-3{
+    width: 700px;
+}
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.card-wrapper .card {
+    margin: 15px;
+}
