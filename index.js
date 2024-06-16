@@ -13,8 +13,9 @@ const mongoose = require('mongoose');
 
 main().catch(err => console.log(err));
 // console.log(process.env.MONGO_URL,process.env.PUBLIC_DIR,process.env.PORT)
+//'mongodb://127.0.0.1:27017/notesapp'
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/notesapp');
+  await mongoose.connect(process.env.MONGO_URL);
 
   // use `await mongoose.connect('');` if your database has auth enabled
   console.log('server connected')

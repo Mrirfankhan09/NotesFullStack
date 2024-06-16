@@ -94,9 +94,26 @@ exports.getNotes = async (req, res) => {
     // console.log('hi');
 
     // const userid = req.body.userId;
+    // try {
+    //     const notes = await Note.find({ userId: req.user });
+    //     res.json(notes);
+    // } catch (error) {
+    //     res.status(500).json({ message: 'Server error' });
+    // }
+    const { page = 1, limit = 3 } = req.query; // Default values if not provided
+    const skip = (page - 1) * limit; // Calculate how many documents to skip
+
     try {
-        const notes = await Note.find({ userId: req.user });
-        res.json(notes);
+        const notes = await Note.find({ userId: req.user })
+                                .skip(skip)
+                                .limit(Number(limit));
+        const totalNotes = await Note.countDocuments({ userId: req.user });
+
+        res.json({
+            totalPages: Math.ceil(totalNotes / limit), // Calculate total pages
+            currentPage: Number(page),
+            notes,
+        });
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
