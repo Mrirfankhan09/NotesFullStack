@@ -8,7 +8,7 @@ const server = express();
 
 server.use(express.json());
 const corsOptions = {
-  origin: 'https://notes-backend-i48x64vlp-mrirfankhan09s-projects.vercel.app',
+  origin: 'http://localhost:3001',
   optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
