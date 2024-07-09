@@ -7,7 +7,12 @@ const notesRouter = require('./routes/notes');
 const server = express();
 
 server.use(express.json());
-server.use(cors());
+const corsOptions = {
+  origin: 'https://notes-backend-i48x64vlp-mrirfankhan09s-projects.vercel.app',
+  optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+server.use(cors(corsOptions));
 server.use('/notes',notesRouter);
 const mongoose = require('mongoose');
 
